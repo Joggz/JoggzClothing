@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
 import HomePage from '../pages/homepage/homepage.component';
+import ShopPage from '../pages/ShopPage/ShopPage';
+
 import { Switch, Route} from 'react-router-dom';
-// import Directory from '../components/directory/directory.component';
+
+import '../container/App.css';
 
 
-
-const Hatspage = ( ) => (
+const Hatspage = ( props) => {
+  console.log(props)
+  return(
   <div>
     <h1>HATS PAGE</h1>
   </div>
-);
+  )
+  };
 
 const Sneakers = ( ) => (
   <div>
@@ -24,8 +29,8 @@ function App() {
         {/* USED CDN ON HERE AND IT WORKED, CHECK TOP CORNER OF BROWSER */}
         <Switch>
           <Route exact path='/' component={ HomePage } />
-          <Route exact path='/hats' component={ Hatspage } />
-          <Route exact path='/Sneakers' component={ Sneakers } />
+          <Route exact path='/shop' component={ ShopPage } />
+          
           
         </Switch>
       </div>
