@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import HomePage from '../pages/homepage/homepage.component';
-import { Switch, Route} from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 import Header from '../components/Header/header.component';
 import SignInAndSignUpPage from '../pages/sign-in-and-sign-up/sign-in-and-sign-up'
 import SignIn from '../components/signIn/signIn.component';
@@ -11,17 +11,8 @@ import { auth, createUserProfileDocument } from '../Firebase/Firebase.utils';
 import  setCurrentUser from '../redux/user/user_action'
 
 class App extends React.Component {
-  // constructor(){
-  //   super();
 
-  //   this.state = {
-  //    currentUser : null,
-  //   }
-
-  // }
-  
-
-  unsubcribeFromAuth = null;
+unsubcribeFromAuth = null;
 
 
   componentDidMount(){
@@ -56,15 +47,15 @@ class App extends React.Component {
   }
   
   render(){
+    // const {currentUser} = this.props.currentUser
     return (
       <div >
         <Header/>
-        {/* USED CDN ON HERE AND IT WORKED, CHECK TOP CORNER OF BROWSER */}
         <Switch>
           <Route exact path='/' component={ HomePage } />
-          {/* <Route exact path='/hats' component={ Hatspage } /> */}
-          {/* <Route exact path='/Sneakers' component={ Sneakers } /> */}
-          <Route exact path='/signin' component={ SignInAndSignUpPage } />
+          <Route exact path='/signin'  render= {() => 
+            this.props.currentUser ? ( <Redirect to='/' />) : ( <SignInAndSignUpPage />)}
+           />
           
           
         </Switch>
@@ -74,9 +65,12 @@ class App extends React.Component {
    
   }
   
+const mapStateToProps = ({user}) => ({
+  currentUser: user.currentUser
+})
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
   // setCurrentUser: dispatch({type:'SET_CURRENT_USER'})
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
