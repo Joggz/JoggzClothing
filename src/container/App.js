@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import './App.css';
 import HomePage from '../pages/homepage/homepage.component';
 import ShopPage from '../pages/ShopPage/ShopPage'
-import { Switch, Route, Redirect} from 'react-router-dom';
 import Header from '../components/Header/header.component';
+import Checkout from '../pages/checkout/checkout.component';
+import { Switch, Route, Redirect} from 'react-router-dom';
 import SignInAndSignUpPage from '../pages/sign-in-and-sign-up/sign-in-and-sign-up'
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../redux/user/user.selector';
@@ -60,6 +61,7 @@ unsubcribeFromAuth = null;
             this.props.currentUser ? ( <Redirect to='/' />) : ( <SignInAndSignUpPage />)}
            />
           <Route exact path='/shop' component={ShopPage}/>
+          <Route exact path='/checkout' component={Checkout}/>
           
         </Switch>
       </div>
