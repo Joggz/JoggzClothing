@@ -11,7 +11,9 @@ import { connect } from 'react-redux';
 import { auth } from '../../Firebase/Firebase.utils';
 import './header.style.scss';
 
-const Header = ({ currentUser, hidden }) => (
+const Header = ({ currentUser, hidden }) => {
+  console.log(currentUser)
+  return(
     <div className='header'>
          <Link className='logo-container' to='/'>
             <Logo className='logo'/> 
@@ -38,10 +40,11 @@ const Header = ({ currentUser, hidden }) => (
           }    
     </div>
 );
+        }
 
 const mapStatetoProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-    hidden: selectCartHidden
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 })
 
 

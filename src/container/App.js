@@ -52,6 +52,7 @@ unsubcribeFromAuth = null;
   
   render(){
     // const {currentUser} = this.props.currentUser
+    console.log(this.props.currentUser)
     return (
       <div >
         <Header/>
@@ -71,7 +72,8 @@ unsubcribeFromAuth = null;
   }
   
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser
+  // currentUser: selectCurrentUser(state),
 })
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))

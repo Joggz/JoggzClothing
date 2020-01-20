@@ -1,6 +1,6 @@
 import React from 'react';
 import CollectionItem from '../collection-item/collection-item.component';
-import CustomButton  from '../customButton/customButton.component';
+// import CustomButton  from '../customButton/customButton.component';
 import './collectionPreview.scss';
 
 
